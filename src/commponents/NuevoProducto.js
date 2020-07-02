@@ -2,16 +2,23 @@ import React, { useState }from "react";
 import { useDispatch, useSelector } from 'react-redux';
 //Actions de redux
 import { crearNuevoProductoAction } from '../actions/productoActions';
+import { mostrarAlerta } from '../actions/alertaActions';
 
-const NuevoProducto = () => {
+// history Componente de router-dom que esta disponible
+const NuevoProducto = ({history}) => {
 
     //State del componente
     const [nombre, guardarNombre] = useState('');
     const [precio, guardarPrecio] = useState(0);
 
 
-    //Usar use dispatch y re crea una funcion
+    //Usar use dispatch y te crea una funcion
     const dispatch = useDispatch(); 
+
+    //Acceder al state del store siempre se usa useselector para acceder al state
+    const cargando = useSelector( state => state.productos.loading);
+    const error = useSelector( state => state.productos.error);
+    const alerta = useSelector( state => state.productos.alerta);
 
     //Mandar llamar el action de productoAction
     const agregarProducto = producto => dispatch( crearNuevoProductoAction(producto) );
@@ -20,6 +27,11 @@ const NuevoProducto = () => {
     const newProducto = e => {
         e.preventDefault();
         if(nombre.trim() === '' || precio <= 0){
+            const alerta = {
+                msg: 'Ambos campos son obligatorios',
+                classes: 'alert alert-danger text-center text-uppercase p3'
+            }
+            dispatch( mostrarAlerta(alerta) );
             return;
         }
 
@@ -27,6 +39,8 @@ const NuevoProducto = () => {
             nombre,
             precio
         });
+
+        history.push('/');
     }
 
     return (
@@ -37,7 +51,7 @@ const NuevoProducto = () => {
                         <h2 className="text-center mb-4 font-weight-bold">
                             Agregar nuevo producto
                         </h2>
-
+                        {alerta ? <p className={alerta.classes}>{alerta.msg}</p> : null}
                         <form
                             onSubmit={newProducto}
                         >
@@ -63,6 +77,8 @@ const NuevoProducto = () => {
                             </div>
                             <button type="submit" className="btn btn-primary btn-block"> Agregar </button>
                         </form>
+                        {cargando ? <p>Cargando</p> : null }
+                        {error ? <p className="alert alert-danger p2">Hubo un error</p> : null }
                     </div>
                 </div>
             </div>
