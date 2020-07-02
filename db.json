@@ -1,29 +1,24 @@
 {
-    "productos": [
-      {
-        "id": 1,
-        "nombre": "Jugo de Zanahoria",
-        "precio": "31111"
-      },
-      {
-        "id": 2,
-        "nombre": "Jugo de Naranja",
-        "precio": "1"
-      },
-      {
-        "nombre": "Jugo de Naranja",
-        "precio": "300",
-        "id": 3
-      },
-      {
-        "nombre": "Rib Eye 800g",
-        "precio": "200",
-        "id": 4
-      },
-      {
-        "nombre": "Jugo de Fresa",
-        "precio": "200",
-        "id": 5
-      }
-    ]
-  }
+  "productos": [
+    {
+      "nombre": "putas alcol",
+      "precio": "600",
+      "id": 6
+    },
+    {
+      "nombre": "234",
+      "precio": 234,
+      "id": 7
+    },
+    {
+      "nombre": "",
+      "precio": 0,
+      "id": 8
+    },
+    {
+      "nombre": "",
+      "precio": 0,
+      "id": 9
+    }
+  ]
+}
